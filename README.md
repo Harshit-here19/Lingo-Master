@@ -3,8 +3,7 @@
 **Lingo-Master** is a lightweight, web-based language learning project built using **HTML, CSS, and JavaScript**.  
 It provides a clean and interactive interface for practicing language concepts and serves as a great starting point for beginners exploring frontend development and educational web apps.
 
-🔗 **Live Demo:**  
-👉 https://harshit-here19.github.io/Lingo-Master/
+Check out the project here:  [🔗 Live Demo] (https://harshit-here19.github.io/Lingo-Master/)
 
 ---
 

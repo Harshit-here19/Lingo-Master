@@ -20,13 +20,10 @@ This project can be extended into a full-fledged language learning platform by a
 
 ## 📁 Project Structure
 
-Lingo-Master/
-│
-├── index.html # Main webpage
-├── style.css # Styling and layout
-├── script.js # JavaScript logic
-└── README.md # Documentation
-
+- `index.html` – Main webpage  
+- `style.css` – Styling and layout  
+- `script.js` – JavaScript logic  
+- `README.md` – Documentation
 
 ---
 

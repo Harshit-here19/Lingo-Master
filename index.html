@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solite Project</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LingoMaster - Learn Japanese & French</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">🌍 LingoMaster</div>
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <span>🔥</span>
+                    <span class="stat-value" id="streakCount">0</span>
+                    <span>streak</span>
+                </div>
+                <div class="stat-item">
+                    <span>⭐</span>
+                    <span class="stat-value" id="xpCount">0</span>
+                    <span>XP</span>
+                </div>
+                <div class="stat-item">
+                    <span>📚</span>
+                    <span class="stat-value" id="wordsLearned">0</span>
+                    <span>words</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-content">
+            <button class="nav-btn active" data-page="home">🏠 Home</button>
+            <button class="nav-btn" data-page="flashcards">🎴 Flashcards</button>
+            <button class="nav-btn" data-page="speaking">🎤 Speaking</button>
+            <button class="nav-btn" data-page="games">🎮 Games</button>
+        </div>
+    </nav>
+
+    <main>
+        <!-- HOME PAGE -->
+        <div class="page active" id="page-home">
+            <div class="welcome-card">
+                <h1 class="welcome-title">Welcome to LingoMaster! 👋</h1>
+                <p class="welcome-text">Start your journey to learn Japanese & French</p>
+            </div>
+
+            <div class="lang-selector">
+                <button class="lang-btn active" data-lang="jp">
+                    <span class="lang-flag">🇯🇵</span>
+                    <span>Japanese</span>
+                </button>
+                <button class="lang-btn" data-lang="fr">
+                    <span class="lang-flag">🇫🇷</span>
+                    <span>French</span>
+                </button>
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-card" data-goto="flashcards">
+                    <span class="feature-icon">🎴</span>
+                    <h3 class="feature-title">Flashcards</h3>
+                    <p class="feature-desc">Learn vocabulary with interactive flip cards</p>
+                </div>
+                <div class="feature-card" data-goto="speaking">
+                    <span class="feature-icon">🎤</span>
+                    <h3 class="feature-title">Speaking</h3>
+                    <p class="feature-desc">Practice pronunciation with speech recognition</p>
+                </div>
+                <div class="feature-card" data-goto="games">
+                    <span class="feature-icon">🎮</span>
+                    <h3 class="feature-title">Games</h3>
+                    <p class="feature-desc">Learn while playing fun interactive games</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- FLASHCARDS PAGE -->
+        <div class="page" id="page-flashcards">
+            <div class="page-header">
+                <h1 class="page-title">🎴 Flashcards</h1>
+                <p class="page-subtitle">Tap the card to reveal the translation</p>
+            </div>
+
+            <div class="category-selector" id="categorySelector"></div>
+
+            <div class="card-container">
+                <div class="card-progress">
+                    <span>Card <strong id="currentCard">1</strong> of <strong id="totalCards">1</strong></span>
+                    <div class="card-progress-bar">
+                        <div class="card-progress-fill" id="cardProgressFill"></div>
+                    </div>
+                </div>
+
+                <div class="flashcard-wrapper">
+                    <div class="flashcard" id="flashcard">
+                        <div class="card-face card-front">
+                            <button class="speak-btn" id="speakFront">🔊</button>
+                            <span class="card-word" id="cardWord">Loading...</span>
+                            <span class="card-romanji" id="cardRomanji"></span>
+                            <span class="card-hint">👆 Tap to flip</span>
+                        </div>
+                        <div class="card-face card-back">
+                            <button class="speak-btn" id="speakBack">🔊</button>
+                            <span class="card-translation" id="cardTranslation">Loading...</span>
+                            <span class="card-example" id="cardExample"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-controls">
+                    <button class="card-btn dont-know" id="dontKnowBtn">❌ Don't Know</button>
+                    <button class="card-btn skip" id="skipBtn">⏭️ Skip</button>
+                    <button class="card-btn know" id="knowBtn">✅ Know It!</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SPEAKING PAGE -->
+        <div class="page" id="page-speaking">
+            <div class="page-header">
+                <h1 class="page-title">🎤 Speaking Practice</h1>
+                <p class="page-subtitle">Listen, then try to say the word</p>
+            </div>
+
+            <div class="speaking-container">
+                <div class="speaking-card">
+                    <p class="speaking-prompt">Say this word:</p>
+                    <div class="speaking-word" id="speakingWord">Loading...</div>
+                    <div class="speaking-translation" id="speakingTranslation"></div>
+                    <button class="listen-btn" id="listenBtn">🔊 Listen</button>
+                </div>
+
+                <div class="mic-container">
+                    <button class="mic-btn" id="micBtn">🎙️</button>
+                    <p class="mic-hint" id="micHint">Click to start speaking</p>
+                </div>
+
+                <div class="result-display" id="resultDisplay" style="display: none;">
+                    <p class="result-label">You said:</p>
+                    <p class="result-text" id="resultText"></p>
+                    <div class="result-feedback" id="resultFeedback"></div>
+                </div>
+
+                <div class="card-controls" style="margin-top: 25px; justify-content: center;">
+                    <button class="card-btn primary" id="nextSpeakBtn">➡️ Next Word</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- GAMES PAGE -->
+        <div class="page" id="page-games">
+            <div class="page-header">
+                <h1 class="page-title">🎮 Fun Games</h1>
+                <p class="page-subtitle">Learn while having fun!</p>
+            </div>
+
+            <div class="games-grid" id="gamesGrid">
+                <div class="game-card" data-game="quiz">
+                    <span class="game-icon">❓</span>
+                    <h3 class="game-name">Quiz</h3>
+                    <p class="game-desc">Test your vocabulary knowledge</p>
+                </div>
+                <div class="game-card" data-game="memory">
+                    <span class="game-icon">🧠</span>
+                    <h3 class="game-name">Memory</h3>
+                    <p class="game-desc">Find matching pairs</p>
+                </div>
+                <div class="game-card" data-game="matching">
+                    <span class="game-icon">🔗</span>
+                    <h3 class="game-name">Matching</h3>
+                    <p class="game-desc">Connect words with translations</p>
+                </div>
+                <div class="game-card" data-game="scramble">
+                    <span class="game-icon">🔤</span>
+                    <h3 class="game-name">Scramble</h3>
+                    <p class="game-desc">Unscramble the letters</p>
+                </div>
+            </div>
+
+            <!-- Quiz Game -->
+            <div class="game-area" id="game-quiz">
+                <div class="game-header">
+                    <button class="back-btn" onclick="hideGame()">← Back</button>
+                    <h2 class="game-title">❓ Quiz Challenge</h2>
+                    <div class="game-stats">
+                        <div class="game-stat">✅ <span id="quizScore">0</span></div>
+                        <div class="game-stat">❓ <span id="quizQuestion">1</span>/10</div>
+                    </div>
+                </div>
+                <div class="quiz-question">
+                    <div class="quiz-word" id="quizWord">Loading...</div>
+                    <p class="quiz-hint">What does this mean?</p>
+                </div>
+                <div class="quiz-options" id="quizOptions"></div>
+            </div>
+
+            <!-- Memory Game -->
+            <div class="game-area" id="game-memory">
+                <div class="game-header">
+                    <button class="back-btn" onclick="hideGame()">← Back</button>
+                    <h2 class="game-title">🧠 Memory Match</h2>
+                    <div class="game-stats">
+                        <div class="game-stat">🎯 <span id="memoryMoves">0</span> moves</div>
+                    </div>
+                </div>
+                <div class="memory-grid" id="memoryGrid"></div>
+            </div>
+
+            <!-- Matching Game -->
+            <div class="game-area" id="game-matching">
+                <div class="game-header">
+                    <button class="back-btn" onclick="hideGame()">← Back</button>
+                    <h2 class="game-title">🔗 Word Matching</h2>
+                    <div class="game-stats">
+                        <div class="game-stat">✅ <span id="matchingScore">0</span>/5</div>
+                    </div>
+                </div>
+                <div class="matching-container">
+                    <div class="matching-column">
+                        <div class="matching-column-title">Words</div>
+                        <div id="matchingWords"></div>
+                    </div>
+                    <div class="matching-column">
+                        <div class="matching-column-title">Translations</div>
+                        <div id="matchingTranslations"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scramble Game -->
+            <div class="game-area" id="game-scramble">
+                <div class="game-header">
+                    <button class="back-btn" onclick="hideGame()">← Back</button>
+                    <h2 class="game-title">🔤 Word Scramble</h2>
+                    <div class="game-stats">
+                        <div class="game-stat">✅ <span id="scrambleScore">0</span></div>
+                        <div class="game-stat">❓ <span id="scrambleRound">1</span>/5</div>
+                    </div>
+                </div>
+                <div class="scramble-container">
+                    <div class="scramble-word" id="scrambleWord">LOADING</div>
+                    <p class="scramble-hint" id="scrambleHint">Hint: Loading...</p>
+                    <input type="text" class="scramble-input" id="scrambleInput" placeholder="Type your answer..." autocomplete="off">
+                    <button class="scramble-submit" id="scrambleSubmit">Check Answer</button>
+                </div>
+            </div>
+
+            <!-- Game Complete -->
+            <div class="game-area" id="game-complete">
+                <div class="game-complete">
+                    <span class="complete-icon">🎉</span>
+                    <h2 class="complete-title">Congratulations!</h2>
+                    <p style="color: var(--text-muted);">You completed the game!</p>
+                    <div class="complete-stats">
+                        <div class="complete-stat">
+                            <div class="complete-stat-value" id="completeScore">0</div>
+                            <div class="complete-stat-label">Score</div>
+                        </div>
+                        <div class="complete-stat">
+                            <div class="complete-stat-value" id="completeXP">+50</div>
+                            <div class="complete-stat-label">XP Earned</div>
+                        </div>
+                    </div>
+                    <button class="play-again-btn" id="playAgainBtn">🔄 Play Again</button>
+                    <button class="play-again-btn" onclick="hideGame()" style="background: var(--bg); border: 2px solid var(--border);">Back to Games</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="toast-container" id="toastContainer"></div>
+</body>
+</html>
+    <script src="script.js"></script>
+</body>
+</html>
